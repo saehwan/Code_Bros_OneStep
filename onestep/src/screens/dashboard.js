@@ -234,6 +234,7 @@ const Dashboard = () => {
         <div style={styles.navButton}>
           <GrReturn />
           <Button style={{textTransform: 'none', color: 'white'}}
+          onClick={() => console.log("logout")}
           >logout</Button>
         </div>
         <h1 style={styles.title}>Dashboard</h1>
