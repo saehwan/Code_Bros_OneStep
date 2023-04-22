@@ -8,7 +8,8 @@ import {
 import { FcCheckmark } from 'react-icons/fc';
 import { TbPlant2 } from 'react-icons/tb';
 import { GiFarmTractor, GiBuyCard, GiRecycle } from 'react-icons/gi';
-import { FaSink } from 'react-icons/fa';
+import { FaSink, FaTrophy } from 'react-icons/fa';
+import { GrReturn } from 'react-icons/gr';
 
 function Task({ task, onCompletion }) {
   return (
@@ -229,7 +230,20 @@ const Dashboard = () => {
 
   return (
     <div style={styles.dashboardPage}>
-      <h1 style={styles.title}>Dashboard</h1>
+      <div style={styles.dashboardHeader}>
+        <div style={styles.navButton}>
+          <GrReturn />
+          <Button style={{textTransform: 'none', color: 'white'}}
+          >logout</Button>
+        </div>
+        <h1 style={styles.title}>Dashboard</h1>
+        <div style={styles.navButton}>
+          <FaTrophy />
+          <Button style={{textTransform: 'none', color: 'white'}}
+          onClick={() => navigate('/accomplishments')}
+          >accomplishments</Button>
+        </div>
+      </div>
       <div style={styles.mainDash}>
         <div style={styles.dashHeader}>
           <h2>Task List</h2>
@@ -345,5 +359,23 @@ let styles = {
   },
   taskInterface: {
     marginBottom: '2%'
+  },
+  dashboardHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+    alignItems: 'center',
+    margin: 'auto',
+    marginBottom: '2%'
+  },
+  navButton: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#7E7466',
+    padding: '5px',
+    paddingLeft: '5px',
+    paddingRight: '5px',
+    borderRadius: '10px',  
   }
 }
