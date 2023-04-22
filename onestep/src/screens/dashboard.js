@@ -14,8 +14,8 @@ function Task({ task, onCompletion }) {
               <h3>{task.name}</h3>  
             </div>            
             <p>{task.description}</p>
-            <Button style={{backgroundColor: '#8CA177', textTransform: 'none'}}
-            onClick={() => onCompletion(task.id)}>Completed</Button>  
+            <Button style={{backgroundColor: 'grey', textTransform: 'none', color: 'black'}}
+            onClick={() => onCompletion(task.id)}>Complete</Button>  
           </div>
           :
           <div>
