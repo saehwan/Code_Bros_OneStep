@@ -1,13 +1,33 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { ToggleButtonGroup, ToggleButton, } from '@mui/material';
+import { ToggleButtonGroup, ToggleButton, Button } from '@mui/material';
+import { MdDriveEta, MdRestoreFromTrash } from 'react-icons/md';
+import { FcCheckmark } from 'react-icons/fc';
 
 function Task({ task, onCompletion }) {
-    return (
+    const [iconName, setIconName] = useState(task.icon);
+    return (        
         <div>
-            <h3>{task.name}</h3>
+          {task.completed === false ?
+          <div>
+            <div style={styles.taskTitle}>
+              <h3>{task.name}</h3>  
+            </div>            
             <p>{task.description}</p>
-            <button onClick={() => onCompletion(task.id)}>Completed</button>
+            <Button style={{backgroundColor: '#8CA177', textTransform: 'none'}}
+            onClick={() => onCompletion(task.id)}>Completed</Button>  
+          </div>
+          :
+          <div>
+            <div style={styles.taskTitle}>
+              <h3>{task.name}</h3>  
+              <FcCheckmark style={styles.checkIcon} />
+            </div>            
+            <p>{task.description}</p>
+            <Button style={{backgroundColor: '#8CA177', textTransform: 'none'}}
+            onClick={() => onCompletion(task.id)}>Completed</Button>  
+          </div>
+          }            
         </div>
     )
 }
@@ -16,7 +36,7 @@ const Dashboard = () => {
 
     let navigate = useNavigate();
 
-    const [currentDifficulty, setCurrentDifficulty] = useState('easy');
+    const [currentDifficulty, setCurrentDifficulty] = useState('easy');    
 
     const handleEasyTaskCompletion = (taskId) => {
         const updatedTasks = easyTaskArray.map((task) =>
@@ -37,6 +57,7 @@ const Dashboard = () => {
           task.id === taskId ? { ...task, completed: true } : task
         );
         setHardTaskArray(updatedTasks);
+        console.log(hardTaskArray);
     };
 
     const [easyTaskArray, setEasyTaskArray] = useState([
@@ -45,14 +66,16 @@ const Dashboard = () => {
             name: 'Anti-Litterbug',
             description: 'Pick up 10 pieces of litter',
             difficulty: 'easy',
-            completed: false
+            completed: false,
+            icon: 'MdRestoreFromTrash'
         },
         {
             id: 2,
             name: 'The Responsible',
             description: 'Turns the lights off before leaving the house',
             difficulty: 'easy',
-            completed: false
+            completed: false,
+            icon: 'MdLightbulb'
         },
     ]);
 
@@ -63,28 +86,32 @@ const Dashboard = () => {
             name: 'Vegetarian Explorer',
             description: 'Switch to a vegetarian or vegan diet for the day.',
             difficulty: 'medium',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 2,
             name: 'Bulbous',
             description: 'Switch light bulbs in house to energy efficient bulbs.',
             difficulty: 'medium',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 3,
             name: 'E-Mail',
             description: 'Switch to paperless billing and communication for bills and documents.',
             difficulty: 'medium',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 4,
             name: 'The Electrician (Lite)',
             description: 'Go without using any electricity for 3 hours outside of sleeping hours',
             difficulty: 'medium',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
     ]);
 
@@ -94,56 +121,64 @@ const Dashboard = () => {
             name: 'Joyride',
             description: 'Choose to walk, bike, or take public transportation instead of driving a car for the day.',
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 2,
             name: 'Composter',
             description: 'Compost fruits, vegetables, or other biodegradables instead of throwing them out.',
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 3,
             name: 'Green Thumb',
             description: 'Compost fruits, vegetables, or other biodegradables instead of throwing them out.',
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 4,
             name: 'Market Farmer',
             description: "Shop at a local farmer's market or co-op for locally grown produce.",
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 5,
             name: 'Reusable',
             description: 'Reduce plastic usage by bringing a reusable water bottle and shopping bag.',
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 6,
             name: 'Old School Laundromat',
             description: 'Use a clothesline or drying rack instead of a dryer for one load of laundry.',
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 7,
             name: 'Communal Cleaning',
             description: 'Attend a community clean-up event to reduce litter and pollution.',
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
         {
             id: 8,
             name: 'The Electrician',
             description: 'Go without using any electricity for 6 hours outside of sleeping hours',
             difficulty: 'hard',
-            completed: false
+            completed: false,
+            icon: 'MdDriveEta'
         },
     ]);
 
@@ -152,24 +187,25 @@ const Dashboard = () => {
             <h1 style={styles.title}>Dashboard</h1>
             <div style={styles.mainDash}>
                 <div style={styles.dashHeader}>
-                    <h2>Overview</h2>
+                    <h2>Task List</h2>
                     <div>
                         <ToggleButtonGroup
                             color="success"
                             orientation="horizontal"
                             value={currentDifficulty}
                             exclusive
+                            style={{textTransform: 'none'}}
                             onChange={(event, newDifficulty) => {
                                 setCurrentDifficulty(newDifficulty);
                             }}
                         >
-                            <ToggleButton value="easy" aria-label="easy">
+                            <ToggleButton style={{textTransform: 'none'}} value="easy" aria-label="easy">
                                 easy
                             </ToggleButton>
-                            <ToggleButton value="medium" aria-label="medium">
+                            <ToggleButton style={{textTransform: 'none'}} value="medium" aria-label="medium">
                                 medium
                             </ToggleButton>
-                            <ToggleButton value="hard" aria-label="hard">
+                            <ToggleButton style={{textTransform: 'none'}} value="hard" aria-label="hard">
                                 hard
                             </ToggleButton>
                         </ToggleButtonGroup>
@@ -178,7 +214,6 @@ const Dashboard = () => {
                 <div>
                     {currentDifficulty === 'easy' ?
                         <div>
-                            <h2>Easy</h2>
                             <div style={styles.taskList}>
                                 {easyTaskArray.map((task) => (
                                     <Task key={task.id} task={task} onCompletion={handleEasyTaskCompletion} />
@@ -187,7 +222,6 @@ const Dashboard = () => {
                         </div>
                         : currentDifficulty === 'medium' ?
                             <div>
-                                <h2>Medium</h2>
                                 <div style={styles.taskList}>
                                     {mediumTaskArray.map((task) => (
                                         <Task key={task.id} task={task} onCompletion={handleMediumTaskCompletion} />
@@ -196,7 +230,6 @@ const Dashboard = () => {
                             </div>
                             : currentDifficulty === 'hard' ?
                                 <div>
-                                    <h2>Hard</h2>
                                     <div style={styles.taskList}>
                                         {hardTaskArray.map((task) => (
                                             <Task key={task.id} task={task} onCompletion={handleHardTaskCompletion} />
@@ -216,7 +249,7 @@ export default Dashboard;
 
 let styles = {
     dashboardPage: {
-
+      padding: '10px',
     },
     title: {
         color: '#698975',
@@ -230,7 +263,8 @@ let styles = {
         alignItems: 'center',
         width: '80%',
         minHeight: '80%',
-        backgroundColor: '#9EB7BC'
+        backgroundColor: '#9EB7BC',
+        padding: '10px'
     },
     dashHeader: {
         paddingTop: '1%',
@@ -244,5 +278,13 @@ let styles = {
     taskList: {
         display: 'flex',
         flexDirection: 'column'
+    },
+    taskTitle: {
+      display: 'flex',
+      alignItems: 'center',      
+      justifyContent: 'center'
+    },
+    checkIcon: {
+      marginLeft: '2%'
     }
 }
