@@ -12,6 +12,10 @@ const Accomplishments = () => {
 
   const [currentDifficulty, setCurrentDifficulty] = useState('easy');
 
+  useEffect(() => {
+    console.log(localStorage.getItem('points'));
+  })
+
   return (
     <div style={styles.accomplishmentPage}>
       <div style={styles.accomplishmentHeader}>

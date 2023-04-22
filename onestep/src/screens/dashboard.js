@@ -41,14 +41,29 @@ function Task({ task, onCompletion }) {
 const Dashboard = () => {
 
   let navigate = useNavigate();
-
+  
   const [currentDifficulty, setCurrentDifficulty] = useState('easy');
+  const [points, setPoints] = useState(0);
+
+  useEffect(() => {
+    setPoints(JSON.parse(window.localStorage.getItem('points')));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('points', points);
+  }, [points]);
+
+  useEffect(() => {
+    console.log(localStorage.getItem('points'));
+  })
+
 
   const handleEasyTaskCompletion = (taskId) => {
     const updatedTasks = easyTaskArray.map((task) =>
       task.id === taskId ? { ...task, completed: true } : task
     );
     setEasyTaskArray(updatedTasks);
+    setPoints(points + 1);
   };
 
   const handleMediumTaskCompletion = (taskId) => {
@@ -56,6 +71,7 @@ const Dashboard = () => {
       task.id === taskId ? { ...task, completed: true } : task
     );
     setMediumTaskArray(updatedTasks);
+    setPoints(points + 3);
   };
 
   const handleHardTaskCompletion = (taskId) => {
@@ -63,7 +79,7 @@ const Dashboard = () => {
       task.id === taskId ? { ...task, completed: true } : task
     );
     setHardTaskArray(updatedTasks);
-    console.log(hardTaskArray);
+    setPoints(points + 5);
   };
 
   const [easyTaskArray, setEasyTaskArray] = useState([
