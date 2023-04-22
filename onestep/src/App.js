@@ -7,12 +7,12 @@ import Dashboard from './screens/dashboard';
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './screens/login';
-//import SignInSuccess from './components/logintest';
 import firebase from './components/firebase';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { auth, database } from "./components/firebase";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import Accomplishments from './screens/accomplishments';
 
 //database Connection
 
@@ -53,6 +53,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          {/* <Route path="/login" element={<LoginPage />} /> */}
+          <Route path="/accomplishments" element={<Accomplishments />} />
         </Routes>
       </Router>
   )
