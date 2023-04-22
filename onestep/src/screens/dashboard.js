@@ -12,26 +12,40 @@ const Dashboard = () => {
         <div style={styles.dashboardPage}>
             <h1 style={styles.title}>Dashboard</h1>
             <div style={styles.mainDash}>
-                <div className="dashHeader" style={styles.dashHeader}>
+                <div style={styles.dashHeader}>
                     <h2>Overview</h2>
-                    <ToggleButtonGroup
-                        orientation="horizontal"
-                        value={currentDifficulty}
-                        exclusive
-                        onChange={(event, newDifficulty) => {
-                            setCurrentDifficulty(newDifficulty);
-                        }}
-                    >
-                        <ToggleButton value="easy" aria-label="easy">
-                            easy
-                        </ToggleButton>
-                        <ToggleButton value="medium" aria-label="medium">
-                            medium
-                        </ToggleButton>
-                        <ToggleButton value="hard" aria-label="hard">
-                            hard
-                        </ToggleButton>
-                    </ToggleButtonGroup>
+                    <div>
+                        <ToggleButtonGroup
+                            color="success"
+                            orientation="horizontal"
+                            value={currentDifficulty}
+                            exclusive
+                            onChange={(event, newDifficulty) => {
+                                setCurrentDifficulty(newDifficulty);
+                            }}
+                        >
+                            <ToggleButton value="easy" aria-label="easy">
+                                easy
+                            </ToggleButton>
+                            <ToggleButton value="medium" aria-label="medium">
+                                medium
+                            </ToggleButton>
+                            <ToggleButton value="hard" aria-label="hard">
+                                hard
+                            </ToggleButton>
+                        </ToggleButtonGroup>
+                    </div>
+                </div>
+                <div>
+                    { currentDifficulty === 'easy' ?
+                        <h2>Easy</h2>
+                    : currentDifficulty === 'medium' ?
+                        <h2>Medium</h2>
+                    : currentDifficulty === 'hard' ?
+                        <h2>Hard</h2>
+                    :
+                        <h2>Pick something</h2>
+                    }
                 </div>
             </div>
         </div>
@@ -50,6 +64,7 @@ let styles = {
     },
     mainDash: {
         display: 'flex',
+        flexDirection: 'column',
         margin: 'auto',
         borderRadius: '25px',
         alignItems: 'center',
@@ -58,10 +73,12 @@ let styles = {
         backgroundColor: '#9EB7BC'
     },
     dashHeader: {
+        paddingTop: '1%',
+        width: '90%',
         display: 'flex',
         flexDirection: 'row',
         margin: 'auto',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'space-between'
     }
 }
