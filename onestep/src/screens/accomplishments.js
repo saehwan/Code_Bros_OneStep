@@ -6,7 +6,7 @@ const Accomplishments = () => {
 
     return (
         <div>
-            <h2>Hi</h2>
+            <h2>Accomplishments</h2>
             <button onClick={() => navigate('/dashboard')}>Dashboard</button>
         </div>
     );

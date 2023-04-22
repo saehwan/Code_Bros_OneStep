@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 //database Connection
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { auth, database } from "./firebase";
+import { auth, database } from "../components/firebase";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 

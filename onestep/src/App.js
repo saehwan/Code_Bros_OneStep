@@ -1,14 +1,12 @@
 import './App.css';
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
 
-import Login from './screens/login';
 import Dashboard from './screens/dashboard';
 
 //import logo from './logo.svg';
 //import './App.css';
 import React, {useState} from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-//import LoginPage from './components/LoginPage';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import LoginPage from './screens/login';
 //import SignInSuccess from './components/logintest';
 import firebase from './components/firebase';
 import { initializeApp } from "firebase/app";
@@ -21,8 +19,6 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 // // Initialize Firebase
 // const fireapp = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(fireapp);
-
-
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -46,11 +42,6 @@ function App() {
   
   if(!isSignedIn){
     return (
-      // <Router>
-      //   <Routes>
-      //     <Route exact path="/" element={<LoginPage></LoginPage>} />
-      //   </Routes>
-      // </Router>
       <div className="App">
         <LoginPage onSignIn={handleSignIn} />
       </div>
@@ -61,7 +52,7 @@ function App() {
   return(
       <Router>
         <Routes>
-          <Route exact path="/" element={<Dashboard></Dashboard>} />
+          <Route path="/" element={<Dashboard />} />
         </Routes>
       </Router>
   )

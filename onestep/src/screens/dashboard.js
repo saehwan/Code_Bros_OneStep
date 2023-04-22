@@ -304,6 +304,8 @@ export default Dashboard;
 let styles = {
   dashboardPage: {
     padding: '10px',
+    textAlign: 'center',
+    backgroundColor: '#E0D8C3',
   },
   title: {
     color: '#698975',
