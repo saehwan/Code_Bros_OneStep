@@ -49,6 +49,7 @@ let styles = {
     padding: '10px',
     textAlign: 'center',
     backgroundColor: '#E0D8C3',
+    minHeight: '100vh'
   },
   title: {
     color: '#698975',

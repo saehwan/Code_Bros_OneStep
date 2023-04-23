@@ -6,7 +6,7 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
   const [description, setDescription] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [completion, setCompletion] = useState(false);
-  const [goals, setGoals] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -24,6 +24,18 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
     setCompletion(event.target.checked);
   };
 
+  const handleCompleteInput = (id) => {
+    const updatedTask = tasks.map(task => {
+        if (task.id === id) {
+          localStorage.setItem('points', parseInt(localStorage.getItem('points')) + parseInt(task.difficulty));
+          return { ...task, completion: true };
+        } else {
+          return task;
+        }
+      });      
+      setTasks(updatedTask);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const newGoal = {
@@ -33,7 +45,7 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
       difficulty,
       completion,
     };
-    setGoals([...goals, newGoal]);
+    setTasks([...tasks, newGoal]);
 
     if (newGoal.completion == true) {
         localStorage.setItem('points',  parseInt(localStorage.getItem('points')) + parseInt(newGoal.difficulty))
@@ -42,13 +54,16 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
     handleModalClose();
   };
 
-  const renderGoals = () => {
-    return goals.map((goal) => (
-      <div key={goal.id}>
+  const rendertasks = () => {
+    return tasks.map((goal) => (
+      <div style={styles.task} key={goal.id}>
         <h2>{goal.name}</h2>
         <p>{goal.description}</p>
         <p>{goal.difficulty}</p>
-        <p>{goal.completion ? 'Completed' : 'Not Completed'}</p>
+        <p>{goal.completion ? 'Completed' : 
+        <Button style={{ backgroundColor: '#8CA177', textTransform: 'none', marginTop: '2%' }}
+        onClick={() => handleCompleteInput(goal.id)}>Complete</Button>
+        }</p>
       </div>
     ));
   };
@@ -75,7 +90,7 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
           </form>
         </div>
       </Modal>
-      <div>{renderGoals()}</div>
+      <div>{rendertasks()}</div>
     </div>
   );
 };
@@ -98,5 +113,8 @@ let styles = {
     input: {
         backgroundColor: '#7E7466',
         marginBottom: '2%'
+    },
+    task: {
+        marginTop: '4%'
     }
 }

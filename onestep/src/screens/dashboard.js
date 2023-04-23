@@ -44,7 +44,7 @@ function Task({ task, onCompletion }) {
 const Dashboard = () => {
 
   let navigate = useNavigate();
-  
+
   const [currentDifficulty, setCurrentDifficulty] = useState('easy');
   const [points, setPoints] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
@@ -74,7 +74,7 @@ const Dashboard = () => {
       task.id === taskId ? { ...task, completed: true } : task
     );
     setEasyTaskArray(updatedTasks);
-    setPoints(parseInt(localStorage.getItem('points')) + 1);  
+    setPoints(parseInt(localStorage.getItem('points')) + 1);
   };
 
   const handleMediumTaskCompletion = (taskId) => {
@@ -260,15 +260,15 @@ const Dashboard = () => {
       <div style={styles.dashboardHeader}>
         <div style={styles.navButton}>
           <GrReturn />
-          <Button style={{textTransform: 'none', color: 'white'}}
-          onClick={() => console.log("logout")}
+          <Button style={{ textTransform: 'none', color: 'white' }}
+            onClick={() => console.log("logout")}
           >logout</Button>
         </div>
         <h1 style={styles.title}>Dashboard</h1>
         <div style={styles.navButton}>
           <FaTrophy />
-          <Button style={{textTransform: 'none', color: 'white'}}
-          onClick={() => navigate('/accomplishments')}
+          <Button style={{ textTransform: 'none', color: 'white' }}
+            onClick={() => navigate('/accomplishments')}
           >accomplishments</Button>
         </div>
       </div>
@@ -336,15 +336,15 @@ const Dashboard = () => {
                   </div>
                 </div>
                 : currentDifficulty === 'custom' ?
-                <div>
-                  <Button style={{textTransform: 'none'}} variant="contained" color="primary"
-                  onClick={() => handleModalOpen()}>
-                    new task
-                  </Button>
-                  <CustomTask isModalOpen={modalOpen} handleModalClose={handleModalClose} />
-                </div>
-                :
-                <img src="https://media4.giphy.com/media/hrXNZuo6SYYx079zvd/giphy.gif" alt="Encouraging bird GIF" />
+                  <div>
+                    <Button style={{ textTransform: 'none' }} variant="contained" color="primary"
+                      onClick={() => handleModalOpen()}>
+                      new task
+                    </Button>
+                    <CustomTask isModalOpen={modalOpen} handleModalClose={handleModalClose} />
+                  </div>
+                  :
+                  <img src="https://media4.giphy.com/media/hrXNZuo6SYYx079zvd/giphy.gif" alt="Encouraging bird GIF" />
           }
         </div>
       </div>
@@ -359,6 +359,7 @@ let styles = {
     padding: '10px',
     textAlign: 'center',
     backgroundColor: '#E0D8C3',
+    minHeight: '100vh'
   },
   title: {
     color: '#698975',
@@ -415,6 +416,6 @@ let styles = {
     padding: '5px',
     paddingLeft: '5px',
     paddingRight: '5px',
-    borderRadius: '10px',  
+    borderRadius: '10px',
   }
 }
