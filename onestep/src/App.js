@@ -34,6 +34,7 @@ function App() {
       })
       .catch((error) => {
         // Sign-in failed
+        alert("Login failed; invalid credentials");
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(`Sign-in failed: ${errorCode} ${errorMessage}`);
