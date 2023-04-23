@@ -34,6 +34,8 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
       completion,
     };
     setGoals([...goals, newGoal]);
+
+    handleModalClose();
   };
 
   const renderGoals = () => {
@@ -52,18 +54,20 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
       <Modal style={styles.modal}
             open={isModalOpen} onClose={handleModalClose}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-          <form onSubmit={handleSubmit}>
-            <TextField label="Goal Name" value={name} onChange={handleNameChange} />
-            <TextField label="Goal Description" value={description} onChange={handleDescriptionChange} />
-            <TextField label="Goal Difficulty" value={difficulty} onChange={handleDifficultyChange} />
+          <form style={styles.modalForm} onSubmit={handleSubmit}>
+            <TextField style={styles.input} label="Goal Name" value={name} onChange={handleNameChange} />
+            <TextField style={styles.input} label="Goal Description" value={description} onChange={handleDescriptionChange} />
+            <TextField style={styles.input} label="Estimated Point Value" value={difficulty} onChange={handleDifficultyChange} />
             <FormControlLabel
               control={<Checkbox checked={completion} onChange={handleCompletionChange} color="primary" />}
               label="Completion"
             />
-            <Button type="submit" variant="contained" color="primary">
-              Add
-            </Button>            
-            <Button onClick={handleModalClose}>Close</Button>
+            <div style={styles.buttonContainer}>
+                <Button style={styles.button} type="submit" variant="contained" color="success">
+                add
+                </Button>            
+                <Button style={styles.button} onClick={handleModalClose}>close</Button>
+            </div>
           </form>
         </div>
       </Modal>
@@ -75,6 +79,20 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
 export default CustomTask;
 
 let styles = {  
-    modal: {
+    buttonContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: '4%'
+    },
+    button: {
+        textTransform: 'none'
+    },
+    modalForm: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    input: {
+        backgroundColor: '#7E7466',
+        marginBottom: '2%'
     }
 }

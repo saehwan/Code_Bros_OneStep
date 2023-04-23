@@ -124,7 +124,7 @@ const Dashboard = () => {
       description: 'Go without using any electricity for 1 hour outside of sleeping hours',
       difficulty: 'easy',
       completed: false,
-      icon: <FaSink />
+      icon: <MdElectricBolt />
     },
     {
       id: 5,
@@ -341,7 +341,7 @@ const Dashboard = () => {
                   onClick={() => handleModalOpen()}>
                     Add Goal
                   </Button>
-                  <CustomTask isModalOpen={modalOpen} handleModalClose={handleModalClose} />
+                  {/* <CustomTask isModalOpen={modalOpen} handleModalClose={handleModalClose} /> */}
                 </div>
                 :
                 <img src="https://media4.giphy.com/media/hrXNZuo6SYYx079zvd/giphy.gif" alt="Encouraging bird GIF" />
