@@ -44,6 +44,10 @@ function LoginPage(props) {
       });
   }
 
+  useEffect(() => {
+    localStorage.clear();
+  })
+
   return (
 
     <div style={styles.loginPage}>

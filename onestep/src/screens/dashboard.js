@@ -58,11 +58,11 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    setPoints(JSON.parse(window.localStorage.getItem('points')));
+    setPoints(window.localStorage.getItem('points'));
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('points', points);
+    window.localStorage.setItem('points', parseInt(points));
   }, [points]);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const Dashboard = () => {
       task.id === taskId ? { ...task, completed: true } : task
     );
     setEasyTaskArray(updatedTasks);
-    setPoints(points + 1);  
+    setPoints(parseInt(localStorage.getItem('points')) + 1);  
   };
 
   const handleMediumTaskCompletion = (taskId) => {
@@ -82,7 +82,7 @@ const Dashboard = () => {
       task.id === taskId ? { ...task, completed: true } : task
     );
     setMediumTaskArray(updatedTasks);
-    setPoints(points + 3);
+    setPoints(parseInt(localStorage.getItem('points')) + 3);
   };
 
   const handleHardTaskCompletion = (taskId) => {
@@ -90,7 +90,7 @@ const Dashboard = () => {
       task.id === taskId ? { ...task, completed: true } : task
     );
     setHardTaskArray(updatedTasks);
-    setPoints(points + 5);
+    setPoints(parseInt(localStorage.getItem('points')) + 5);
   };
 
   const [easyTaskArray, setEasyTaskArray] = useState([
@@ -339,7 +339,7 @@ const Dashboard = () => {
                 <div>
                   <Button style={{textTransform: 'none'}} variant="contained" color="primary"
                   onClick={() => handleModalOpen()}>
-                    Add Goal
+                    new task
                   </Button>
                   <CustomTask isModalOpen={modalOpen} handleModalClose={handleModalClose} />
                 </div>

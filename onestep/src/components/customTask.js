@@ -35,6 +35,10 @@ const CustomTask = ({ isModalOpen, handleModalClose }) => {
     };
     setGoals([...goals, newGoal]);
 
+    if (newGoal.completion == true) {
+        localStorage.setItem('points',  parseInt(localStorage.getItem('points')) + parseInt(newGoal.difficulty))
+    }
+
     handleModalClose();
   };
 
