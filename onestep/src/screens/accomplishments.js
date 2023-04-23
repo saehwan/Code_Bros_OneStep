@@ -37,26 +37,9 @@ const Accomplishments = () => {
         <div style={styles.dashHeader}>
           <h2>Tree</h2>
           <div>
-            <ToggleButtonGroup
-              color="success"
-              orientation="horizontal"
-              value={currentDifficulty}
-              exclusive
-              style={{ textTransform: 'none' }}
-              onChange={(event, newDifficulty) => {
-                setCurrentDifficulty(newDifficulty);
-              }}
-            >
-              <ToggleButton style={{ textTransform: 'none' }} value="easy" aria-label="easy">
-                easy
-              </ToggleButton>
-              <ToggleButton style={{ textTransform: 'none' }} value="medium" aria-label="medium">
-                medium
-              </ToggleButton>
-              <ToggleButton style={{ textTransform: 'none' }} value="hard" aria-label="hard">
-                hard
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <div>
+              Points: {localStorage.getItem('points')}
+            </div>
           </div>
         </div>
         <Tree height={500}/>

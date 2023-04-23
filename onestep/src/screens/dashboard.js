@@ -12,6 +12,8 @@ import { FaSink, FaTrophy, FaRecycle, FaDog } from 'react-icons/fa';
 import { GrReturn } from 'react-icons/gr';
 import { BsCupStraw } from 'react-icons/bs';
 
+import CustomTask from '../components/customTask';
+
 function Task({ task, onCompletion }) {
   return (
     <div style={styles.taskInterface}>
@@ -45,6 +47,15 @@ const Dashboard = () => {
   
   const [currentDifficulty, setCurrentDifficulty] = useState('easy');
   const [points, setPoints] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  }
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  }
 
   useEffect(() => {
     setPoints(JSON.parse(window.localStorage.getItem('points')));
@@ -326,7 +337,11 @@ const Dashboard = () => {
                 </div>
                 : currentDifficulty === 'custom' ?
                 <div>
-                  Custom newDifficulty
+                  <Button style={{textTransform: 'none'}} variant="contained" color="primary"
+                  onClick={() => handleModalOpen()}>
+                    Add Goal
+                  </Button>
+                  <CustomTask isModalOpen={modalOpen} handleModalClose={handleModalClose} />
                 </div>
                 :
                 <img src="https://media4.giphy.com/media/hrXNZuo6SYYx079zvd/giphy.gif" alt="Encouraging bird GIF" />
