@@ -8,8 +8,9 @@ import {
 import { FcCheckmark } from 'react-icons/fc';
 import { TbPlant2 } from 'react-icons/tb';
 import { GiFarmTractor, GiBuyCard, GiRecycle } from 'react-icons/gi';
-import { FaSink, FaTrophy } from 'react-icons/fa';
+import { FaSink, FaTrophy, FaRecycle, FaDog } from 'react-icons/fa';
 import { GrReturn } from 'react-icons/gr';
+import { BsCupStraw } from 'react-icons/bs';
 
 function Task({ task, onCompletion }) {
   return (
@@ -21,7 +22,7 @@ function Task({ task, onCompletion }) {
           </div>
           <p>{task.description}</p>
           <Button style={{ backgroundColor: 'grey', textTransform: 'none', color: 'black', marginTop: '2%' }}
-            onClick={() => onCompletion(task.id)}>Complete</Button>
+            onClick={(e) => onCompletion(task.id)}>Complete</Button>
         </div>
         :
         <div>
@@ -57,13 +58,12 @@ const Dashboard = () => {
     console.log(localStorage.getItem('points'));
   })
 
-
   const handleEasyTaskCompletion = (taskId) => {
     const updatedTasks = easyTaskArray.map((task) =>
       task.id === taskId ? { ...task, completed: true } : task
     );
     setEasyTaskArray(updatedTasks);
-    setPoints(points + 1);
+    setPoints(points + 1);  
   };
 
   const handleMediumTaskCompletion = (taskId) => {
@@ -116,28 +116,28 @@ const Dashboard = () => {
       icon: <FaSink />
     },
     {
-      id: 3,
-      name: 'Water Warrior',
-      description: 'Reduce water usage by turning off wasteful water when brushing, washing dishes, etc.',
+      id: 5,
+      name: 'Recycler',
+      description: 'Start recycling products like plastic bottles, paper bags, etc.',
       difficulty: 'easy',
       completed: false,
-      icon: <FaSink />
+      icon: <FaRecycle />
     },
     {
-      id: 3,
-      name: 'Water Warrior',
-      description: 'Reduce water usage by turning off wasteful water when brushing, washing dishes, etc.',
+      id: 6,
+      name: 'Straw Person',
+      description: 'Buy a reusable straw and save the turtles',
       difficulty: 'easy',
       completed: false,
-      icon: <FaSink />
+      icon: <BsCupStraw />
     },
     {
-      id: 3,
-      name: 'Water Warrior',
-      description: 'Reduce water usage by turning off wasteful water when brushing, washing dishes, etc.',
+      id: 7,
+      name: 'Dog Days',
+      description: 'Pick up after your pet after their daily waste needs',
       difficulty: 'easy',
       completed: false,
-      icon: <FaSink />
+      icon: <FaDog />
     },
   ]);
 
@@ -146,7 +146,7 @@ const Dashboard = () => {
     {
       id: 1,
       name: 'Vegetarian Explorer',
-      description: 'Switch to a vegetarian or vegan diet for the day.',
+      description: 'Switch to a vegetarian or vegan diet for the day',
       difficulty: 'medium',
       completed: false,
       icon: <TbPlant2 />
@@ -284,6 +284,9 @@ const Dashboard = () => {
               <ToggleButton style={{ textTransform: 'none' }} value="hard" aria-label="hard">
                 hard
               </ToggleButton>
+              <ToggleButton style={{ textTransform: 'none' }} value="custom" aria-label="custom">
+                custom
+              </ToggleButton>
             </ToggleButtonGroup>
           </div>
         </div>
@@ -320,6 +323,10 @@ const Dashboard = () => {
                       </div>
                     ))}
                   </div>
+                </div>
+                : currentDifficulty === 'custom' ?
+                <div>
+                  Custom newDifficulty
                 </div>
                 :
                 <img src="https://media4.giphy.com/media/hrXNZuo6SYYx079zvd/giphy.gif" alt="Encouraging bird GIF" />
