@@ -1,7 +1,7 @@
 # Team Member
-Saehwan Park
-Bruce Quach
-Andrew Nguyen
+Saehwan Park, 
+Bruce Quach, 
+Andrew Nguyen, 
 
 ## Inspiration
 Apps to gamify focus and help the environment
