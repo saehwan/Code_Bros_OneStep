@@ -1,3 +1,42 @@
+# Team Member
+Saehwan Park
+Bruce Quach
+Andrew Nguyen
+
+## Inspiration
+Apps to gamify focus and help the environment
+
+## What it does
+One Step motivates people to complete tasks to help the environment and rewards them points based on their completion progress to grow a tree and eventually get more rewards.
+
+## How we built it
+Using React.JS and Material UI for the frontend and Firebase for backend authentication, MongoDB for databases
+
+## Challenges we ran into
+Using new database technologies and implementing tasks we came up with and reward systems were challenging.
+
+## Accomplishments that we're proud of
+Everything we created is pretty solid.
+
+## What we learned
+Teamwork, time management, and new tech
+
+## What's Next for One Step
+Making more solid reward systems (API's for coupons and such) would be cool.
+
+## Built With
+css, 
+Figma, 
+firebase, 
+GitHub, 
+html, 
+javascript, 
+MongoDB, 
+react
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
